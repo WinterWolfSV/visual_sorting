@@ -1,7 +1,8 @@
 # **Sorting Algorithm Visualizer**
 This program is a tool for visualizing the behavior of different sorting algorithms. It allows users to see how the algorithm sorts an array of values step by step.
 
-## **Features**
+### **Features:**
+
 ### Visualization of the following sorting algorithms:
 - Bubble sort
 - insertion sort
