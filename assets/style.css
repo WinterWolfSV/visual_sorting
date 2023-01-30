@@ -1,9 +1,13 @@
+body {
+    background-color: #303030;
+}
+
 #sorting_area {
-    width: 80vw;
-    height: 80vh;
+    width: 95vw;
+    height: 90vh;
     margin: auto;
-    border: 3px solid black;
-    padding: 20px;
+    /*border: 3px solid black;
+*/
     display: flex;
     align-items: baseline;
 
@@ -11,5 +15,30 @@
 
 .column {
     display: block;
-    background-color: aqua;
+    border: 1px solid black;
+}
+
+.top {
+    align-items: end;
+}
+
+#main-slider {
+    width: 70%;
+}
+
+#output {
+    color: greenyellow;
+    font-size: 40px;
+
+}
+
+.sorts {
+
+    background-color: lawngreen;
+    font-size: 20px;
+    width: fit-content;
+    height: 40px;
+    margin: 0 20px;
+    text-align: center;
+    display: inline-block;
 }

@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <title>Sorting Algorithms</title>
     <link rel="stylesheet" href="assets/style.css">
-    <script src="assets/script.js"></script>
+    <script type="module" src="assets/script.js"></script>
 </head>
 <body>
+<div class="top">
+    <input type="range" min="2" max="256" value="100" id="main-slider">
+    <input type="range" min="0" max="100" value="50" id="ms-between-sorts">
+
+    <output id="output"></output>
+    <p id="iteration-counter"></p>
+    <button type="button" class="sorts" id="shuffle">Shuffle!</button>
+    <button type="button" class="sorts" id="bogo">Let's Bogo!</button>
+    <button type="button" class="sorts" id="bubble">Bubble Sort</button>
+    <button type="button" class="sorts" id="checkSort">Check sorted status</button>
+
+</div>
+
 <div id="sorting_area">
 
 </div>

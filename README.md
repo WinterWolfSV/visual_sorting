@@ -6,11 +6,11 @@ algorithm sorts an array of values step by step.
 ### Visualization of the following sorting algorithms:
 
 - [ ] Bubble sort
-- [ ] insertion sort
-- [ ] selection sort
-- [ ] merge sort
-- [ ] quick sort
-- [ ] heap sort
+- [ ] Insertion sort
+- [ ] Selection sort
+- [ ] Merge sort
+- [ ] Quick sort
+- [ ] Heap sort
 
 ### Additional features:
 
@@ -18,8 +18,6 @@ algorithm sorts an array of values step by step.
 - [ ] Option to randomly shuffle the array before sorting
 
 ## Logbook:
-
----
 
 ### 23rd of Jan 2023:
 
@@ -30,5 +28,19 @@ algorithm sorts an array of values step by step.
 
     - Add a slider to select how many pillars that will be generated
     - Implement one or more of the sorting algorithms named above
+
+---
+
+### 30th of Jan 2023:
+
+### Done today
+
+- Added bogo and bubble sort
+- Added sliders to decide speed of sorting and amount of pilars to be generated
+  ### TODO
+
+    - Fix my bad code
+    - Comment
+    - Finish today's README.md
 
 ---
