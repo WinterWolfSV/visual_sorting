@@ -46,6 +46,9 @@ function main() {
             //Defines the height and width
             column.dataset.indexNumber = i.toString();
             let percentage = i / size;
+            if (percentage === 0) {
+                percentage = 0.01;
+            }
             console.log(percentage);
             let red = Math.round(128 * percentage);
             let green = Math.round(256 * percentage);
