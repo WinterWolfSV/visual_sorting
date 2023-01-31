@@ -1,39 +1,43 @@
+/* Sets background color for the body */
 body {
     background-color: #303030;
 }
 
+/* Style for the sorting area container */
 #sorting_area {
     width: 95vw;
     height: 85vh;
     margin: auto;
-    /*border: 3px solid black;
-*/
     display: flex;
     align-items: baseline;
-
 }
 
+/* Style for the columns within the sorting area */
 .column {
     display: block;
     border: 1px solid black;
 }
 
+/* Style for the top section of the page */
 .top {
-    align-items: end;
+    align-items: flex-end;
 }
 
+/* Style for the main slider */
 #main-slider {
     width: 70%;
 }
 
-#output {
+/* Style for the output and iteration counter text */
+#output, #iteration-counter {
     color: greenyellow;
     font-size: 40px;
-
+    display: inline-block;
+    margin: 0 20px;
 }
 
+/* Style for the sort buttons */
 .sorts {
-
     background-color: lawngreen;
     font-size: 20px;
     width: fit-content;

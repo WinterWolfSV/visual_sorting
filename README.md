@@ -47,7 +47,23 @@ algorithm sorts an array of values step by step.
     - [ ] Fix the error that you can start multiple sorting algorithms at once
     - [X] Fix the error that the smallest pillar is transparent
     - [ ] Implement more algorithms
-    - [ ] Comment my code
+    - [X] Comment my code
     - [ ] Clean up the mess people call javascript
+
+---
+
+### 31st of Jan 2023:
+
+### Done today
+
+- Commented a lot of my code
+- Added support to change the colors of the pillars
+- Smallest pillar is not transparent anymore
+
+  ### TODO
+
+    - [ ] Implement more algorithms
+    - [ ] Fix the error that you can start multiple sorting algorithms at once
+    - [ ] Implement a stop button that stops the current algorithm from running
 
 ---

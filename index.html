@@ -7,21 +7,32 @@
     <script type="module" src="assets/script.js"></script>
 </head>
 <body>
+<!-- Control section -->
 <div class="top">
-    <input type="range" min="2" max="256" value="100" id="main-slider">
-    <input type="range" min="0" max="100" value="50" id="ms-between-sorts">
+    <!-- Sliders for size and time between sorts -->
+    <label for="main-slider"></label><input type="range" min="2" max="256" value="100" id="main-slider">
+    <label for="ms-between-sorts"></label><input type="range" min="0" max="100" value="50" id="ms-between-sorts">
 
+    <!-- Output and iteration display -->
     <output id="output"></output>
     <p id="iteration-counter"></p>
-    <button type="button" class="sorts" id="shuffle">Shuffle!</button>
-    <button type="button" class="sorts" id="bogo">Let's Bogo!</button>
-    <button type="button" class="sorts" id="bubble">Bubble Sort</button>
-    <button type="button" class="sorts" id="checkSort">Check sorted status</button>
+
+    <div id="inputs">
+        <!-- Buttons for different sorting algorithms and other functions-->
+        <button type="button" class="sorts" id="shuffle">Shuffle!</button>
+        <button type="button" class="sorts" id="bogo">Let's Bogo!</button>
+        <button type="button" class="sorts" id="bubble">Bubble Sort</button>
+        <button type="button" class="sorts" id="checkSort">Check Sorted Status</button>
+
+        <!-- Color pickers for start and end color -->
+        <label for="color-picker-start"></label><input type="color" id="color-picker-start" value="#00ff00">
+        <label for="color-picker-stop"></label><input type="color" id="color-picker-stop" value="#0000ff">
+    </div>
+
 
 </div>
 
-<div id="sorting_area">
-
-</div>
+<!-- Sorting area display -->
+<div id="sorting_area"></div>
 </body>
 </html>
