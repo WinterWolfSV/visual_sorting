@@ -44,7 +44,7 @@ algorithm sorts an array of values step by step.
 
   ### TODO
 
-    - [ ] Fix the error that you can start multiple sorting algorithms at once
+    - [X] Fix the error that you can start multiple sorting algorithms at once
     - [X] Fix the error that the smallest pillar is transparent
     - [ ] Implement more algorithms
     - [X] Comment my code
@@ -63,7 +63,23 @@ algorithm sorts an array of values step by step.
   ### TODO
 
     - [ ] Implement more algorithms
-    - [ ] Fix the error that you can start multiple sorting algorithms at once
-    - [ ] Implement a stop button that stops the current algorithm from running
+    - [X] Fix the error that you can start multiple sorting algorithms at once
+    - [X] Implement a stop button that stops the current algorithm from running
+
+---
+
+### 6th of Feb 2023:
+
+### Done today
+
+- Added a stop button to terminate the current sorting algorithm
+- Fixed the error that you could start multiple sorting algorithms at once
+- Shuffling the array now stops the current sorting algorithm
+- Changing the color of the pillars does not regenerate them anymore
+
+  ### TODO
+
+    - [ ] Implement more algorithms
+    - [ ] Rewrite the bubble sort to not regenerate the array every time when visualizing
 
 ---

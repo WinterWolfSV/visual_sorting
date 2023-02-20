@@ -1,7 +1,7 @@
 window.onload = main;
 
 // Main function that sets up the initial state of the program
-function main() {
+function main(node, child) {
     // Get references to html elements
     let shuffle = document.getElementById("shuffle");
     let mainSlider = document.getElementById("main-slider");
@@ -9,50 +9,106 @@ function main() {
     let output = document.getElementById("output");
     let bogoHtml = document.getElementById("bogo");
     let bubbleHtml = document.getElementById("bubble");
+    let bubbleToggle = document.getElementById("bubble-toggle");
     let checkSort = document.getElementById("checkSort");
     let iterationCounter = document.getElementById("iteration-counter");
     let colorPickerStart = document.getElementById("color-picker-start");
     let colorPickerEnd = document.getElementById("color-picker-stop");
+    let stopButton = document.getElementById("stop-button");
+    let sortingArea = document.getElementById("sorting_area");
+    const htmlColumns = document.getElementsByClassName("column");
+
 
     // Store the start and end colors in RGB
     let startHex = hexToRgb(colorPickerStart.value);
     let endHex = hexToRgb(colorPickerEnd.value);
 
+    // Creates a flag to indicate if the bubble sort is the fast or slow variant
+    let bubbleVariant = "slow";
+
     // Create an empty array for the columns
     const columns = [];
 
+    // Create a flag to indicate if the sorting algorithm is running
+    let isRunning = false;
+
     // Set the output value to match the main slider
     output.innerHTML = mainSlider.value;
-
 
     // Generate the initial columns
     generateColumns(mainSlider.value);
 
     // Adds event handlers for html elements
     checkSort.onclick = function () {
+        console.log(checkIfSorted())
     };
     shuffle.onclick = function () {
+        isRunning = false;
         shuffleColumns();
     };
     bogoHtml.onclick = function () {
-        bogo();
+        if (!isRunning) {
+            isRunning = true;
+            bogo().then(r => isRunning = false);
+        }
+
     };
     bubbleHtml.onclick = function () {
-        bubble();
+        if (!isRunning) {
+            isRunning = true;
+            if (bubbleVariant === "slow") {
+                slowBubble().then(r => isRunning = false);
+            } else {
+                fastBubble().then(r => isRunning = false);
+            }
+        }
+    };
+    bubbleToggle.onclick = function () {
+        if (bubbleVariant === "slow") {
+            bubbleVariant = "fast";
+            bubbleHtml.innerHTML = "Bubble Sort (Fast)";
+        } else {
+            bubbleVariant = "slow";
+            bubbleHtml.innerHTML = "Bubble Sort (Slow)";
+        }
+    }
+    stopButton.onclick = function () {
+        isRunning = false;
     };
     colorPickerStart.oninput = function () {
         startHex = hexToRgb(colorPickerStart.value);
-        generateColumns(mainSlider.value);
+        updateColumnColor();
     };
 
     colorPickerEnd.oninput = function () {
         endHex = hexToRgb(colorPickerEnd.value);
-        generateColumns(mainSlider.value);
+        updateColumnColor();
     };
     mainSlider.oninput = function () {
         output.innerHTML = this.value;
         generateColumns(mainSlider.value);
     };
+
+    function updateColumnColor() {
+        for (let i = 0; i < columns.length; i++) {
+            // Get the index number of the column
+            let index = parseInt(columns[i].dataset.indexNumber);
+            // Calculate the percentage for color calculation
+            let percentage = index / columns.length;
+            if (percentage === 0) {
+                percentage = 0.01;
+            }
+            // Calculate the RGB color value for the column based on the index number
+            let red = Math.round(startHex[0] + ((endHex[0] - startHex[0]) * percentage));
+            let green = Math.round(startHex[1] + ((endHex[1] - startHex[1]) * percentage));
+            let blue = Math.round(startHex[2] + ((endHex[2] - startHex[2]) * percentage));
+
+            // Setting the background color of the column
+            columns[i].style.backgroundColor = "#" + red.toString(16).padStart(2, "0") + green.toString(16).padStart(2, "0") + blue.toString(16).padStart(2, "0");
+        }
+        // Visualizes the columns
+        visualizeColumns();
+    }
 
     // Function to generate the columns
     function generateColumns(size) {
@@ -67,20 +123,6 @@ function main() {
             column.classList.add("column");
             // Setting the index number of the column
             column.dataset.indexNumber = i.toString();
-
-            // Calculate the percentage for color calculation
-            let percentage = i / size;
-            if (percentage === 0) {
-                percentage = 0.01;
-            }
-
-            // Calculate the RGB color value
-            let red = Math.round(startHex[0] + ((endHex[0] - startHex[0]) * percentage));
-            let green = Math.round(startHex[1] + ((endHex[1] - startHex[1]) * percentage));
-            let blue = Math.round(startHex[2] + ((endHex[2] - startHex[2]) * percentage));
-
-            // Setting the background color of the column
-            column.style.backgroundColor = "#" + red.toString(16).padStart(2, "0") + green.toString(16).padStart(2, "0") + blue.toString(16).padStart(2, "0");
             // Setting the width of the column as a percentage of the sorting area width
             column.style.width = 100 / size + "%";
             // Setting the height of the column as a percentage of the sorting area height
@@ -90,24 +132,19 @@ function main() {
             columns.push(column);
         }
         // Visualizes the columns
-        visualizeColumns();
+        updateColumnColor();
     }
 
     //Function to clear all columns
     function clearColumns() {
-        // Gets all columns from the sorting area
-        const columns = document.getElementsByClassName("column");
         // While there are still columns left, remove them
-        while (columns.length > 0) {
-            columns[0].parentNode.removeChild(columns[0]);
+        while (htmlColumns.length > 0) {
+            htmlColumns[0].parentNode.removeChild(htmlColumns[0]);
         }
     }
 
     // Function to visualize the columns in the "sorting_area" HTML element
     function visualizeColumns() {
-        // Get the sorting area HTML element
-        let sortingArea = document.getElementById("sorting_area");
-
         // Clears previous columns from the sorting area
         clearColumns();
 
@@ -117,6 +154,7 @@ function main() {
             sortingArea.append(columns[i]);
         }
     }
+
 
 // Function that randomly rearranges the columns in the array "columns"
     function shuffleColumns() {
@@ -181,7 +219,7 @@ function main() {
         // Creates a counter to keep track of the number of iterations
         let counter = 0;
         // Loop until the columns array is sorted
-        while (!checkIfSorted()) {
+        while (!checkIfSorted() && isRunning) {
             // Update the iteration counter in the html
             iterationCounter.innerHTML = '' + counter;
             // Shuffles the columns
@@ -193,14 +231,36 @@ function main() {
         }
     }
 
+    async function slowBubble() {
+        const columnLength = columns.length;
+        let counter = 0;
+        while (!checkIfSorted() && isRunning) {
+            for (let i = 0; i < columnLength - 1; i++) {
+                let nextColumn = parseInt(columns[i + 1].dataset.indexNumber);
+                if (columns[i].dataset.indexNumber >= nextColumn) {
+                    let temp = columns[i + 1];
+                    columns[i + 1] = columns[i];
+                    columns[i] = temp;
+                    await new Promise(r => setTimeout(r, 0));
+                    htmlColumns[i].parentElement.insertBefore(htmlColumns[i + 1], htmlColumns[i]);
+                    counter++;
+                    iterationCounter.innerHTML = '' + counter;
+                }
+                await new Promise(r => setTimeout(r, timeSlider.value));
+
+            }
+            console.log(timeSlider.value);
+        }
+    }
+
     // Function that implements the bubble sort algorithm
-    async function bubble() {
+    async function fastBubble() {
         // Defines a variable as the length of the column array
         const columnLength = columns.length;
         // Creates a counter to keep track of the number of iterations
         let counter = 0;
         // Loop until the columns array is sorted
-        while (!checkIfSorted()) {
+        while (!checkIfSorted() && isRunning) {
             // Update the iteration counter in the html
             iterationCounter.innerHTML = '' + counter;
             // For loop that compares two adjacent columns and sorts them
@@ -213,13 +273,13 @@ function main() {
                     let temp = columns[i + 1];
                     columns[i + 1] = columns[i];
                     columns[i] = temp;
+                    counter++;
                 }
             }
-            // Wait for the specified time before visualizing the columns
+            //Wait for the specified time before visualizing the columns
             await new Promise(r => setTimeout(r, timeSlider.value));
             visualizeColumns();
-            // Increases the counter by one
-            counter++;
+            //Increases the counter by one
         }
     }
 }
