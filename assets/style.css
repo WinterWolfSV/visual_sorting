@@ -1,6 +1,7 @@
 /* Sets background color for the body */
 body {
     background-color: #303030;
+    margin: 0;
 }
 
 /* Style for the sorting area container */
@@ -37,7 +38,7 @@ body {
 }
 
 /* Style for the sort buttons */
-.sorts {
+.buttons {
     background-color: lawngreen;
     font-size: 20px;
     width: fit-content;
@@ -45,4 +46,33 @@ body {
     margin: 0 20px;
     text-align: center;
     display: inline-block;
+}
+
+.algorithm {
+    background-color: #0000;
+    border: #0000;
+    color: white;
+    font-size: 30px;
+    width: fit-content;
+    margin: 30px 10px;
+    text-align: left;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#selection-menu.visible {
+    left: 0;
+}
+
+#selection-menu {
+    display: block;
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: #505050fa;
+    left: -299px;
+    transition: left 1s ease;
 }

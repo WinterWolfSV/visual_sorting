@@ -10,12 +10,13 @@ function main(node, child) {
     let bogoHtml = document.getElementById("bogo");
     let bubbleHtml = document.getElementById("bubble");
     let bubbleToggle = document.getElementById("bubble-toggle");
-    let checkSort = document.getElementById("checkSort");
     let iterationCounter = document.getElementById("iteration-counter");
     let colorPickerStart = document.getElementById("color-picker-start");
     let colorPickerEnd = document.getElementById("color-picker-stop");
     let stopButton = document.getElementById("stop-button");
     let sortingArea = document.getElementById("sorting_area");
+    let menu = document.getElementById("menu");
+    let selectionMenu = document.getElementById("selection-menu");
     const htmlColumns = document.getElementsByClassName("column");
 
 
@@ -32,16 +33,41 @@ function main(node, child) {
     // Create a flag to indicate if the sorting algorithm is running
     let isRunning = false;
 
+    // Create a variable to store the timeout id
+    let timeoutId;
+
     // Set the output value to match the main slider
     output.innerHTML = mainSlider.value;
 
     // Generate the initial columns
     generateColumns(mainSlider.value);
 
+    // Hides and shows the selection menu
+    selectionMenu.addEventListener('mouseenter', (e) => {
+        selectionMenu.classList.add("visible");
+        clearTimeout(timeoutId);
+    })
+    selectionMenu.addEventListener('mouseleave', (e) => {
+        timeoutId = setTimeout(() => {
+            selectionMenu.classList.remove("visible");
+        }, 300);
+
+    })
+    document.addEventListener('click', (event) => {
+        if (!selectionMenu.contains(event.target)) {
+            selectionMenu.classList.remove('visible');
+        }
+    });
+
+
     // Adds event handlers for html elements
-    checkSort.onclick = function () {
-        console.log(checkIfSorted())
-    };
+    menu.onclick = function () {
+        if (selectionMenu.classList.contains("visible")) {
+            selectionMenu.classList.remove("visible");
+        } else {
+            selectionMenu.classList.add("visible");
+        }
+    }
     shuffle.onclick = function () {
         isRunning = false;
         shuffleColumns();
@@ -231,25 +257,32 @@ function main(node, child) {
         }
     }
 
+    // Function that implements the bubble sort algorithm
     async function slowBubble() {
+        // Get the length of the columns array
         const columnLength = columns.length;
+        // Initialize a counter variable to keep track of the number of iterations
         let counter = 0;
+        // Continue looping until the columns are sorted or the sorting process is stopped
         while (!checkIfSorted() && isRunning) {
+            // Loop through all pairs of adjacent columns
             for (let i = 0; i < columnLength - 1; i++) {
+                // Get the index numbers of the current and next columns
                 let nextColumn = parseInt(columns[i + 1].dataset.indexNumber);
-                if (columns[i].dataset.indexNumber >= nextColumn) {
+                // If the current column is greater than or equal to the next column, swap them
+                if (columns[i].dataset.indexNumber >= nextColumn && isRunning) {
                     let temp = columns[i + 1];
                     columns[i + 1] = columns[i];
                     columns[i] = temp;
-                    await new Promise(r => setTimeout(r, 0));
+                    // Wait for the amount of time given by the time slider before continuing
+                    await new Promise(r => setTimeout(r, timeSlider.value));
+                    // Move the HTML elements representing the columns on the page to match the new order
                     htmlColumns[i].parentElement.insertBefore(htmlColumns[i + 1], htmlColumns[i]);
+                    // Increment the iteration counter and update the corresponding HTML element
                     counter++;
                     iterationCounter.innerHTML = '' + counter;
                 }
-                await new Promise(r => setTimeout(r, timeSlider.value));
-
             }
-            console.log(timeSlider.value);
         }
     }
 

@@ -80,6 +80,20 @@ algorithm sorts an array of values step by step.
   ### TODO
 
     - [ ] Implement more algorithms
-    - [ ] Rewrite the bubble sort to not regenerate the array every time when visualizing
+    - [X] Rewrite the bubble sort to not regenerate the array every time when visualizing
+
+---
+
+### 20th of Feb 2023:
+
+### Done today
+
+- Came up with a new design for the website
+- Added a side menu which holds the sorts in it
+
+  ### TODO
+
+    - [ ] Implement more algorithms
+    - [ ] Make the side menu work with the show menu button as well as add support for phones
 
 ---

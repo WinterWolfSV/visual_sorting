@@ -7,34 +7,47 @@
     <script type="module" src="assets/script.js"></script>
 </head>
 <body>
+
+<div id="selection-menu" class="">
+    <ul>
+        <li>
+            <button type="button" class="algorithm" id="bogo">Bogo Sort</button>
+        </li>
+        <li>
+            <button type="button" class="algorithm" id="bubble">Bubble Sort (Slow)</button>
+        </li>
+    </ul>
+</div>
 <!-- Control section -->
 <div class="top">
     <!-- Sliders for size and time between sorts -->
-    <label for="main-slider"></label><input type="range" min="2" max="256" value="100" id="main-slider">
     <label for="ms-between-sorts"></label><input type="range" min="0" max="100" value="50" id="ms-between-sorts">
 
     <!-- Output and iteration display -->
-    <output id="output"></output>
     <p id="iteration-counter"></p>
 
     <div id="inputs">
         <!-- Buttons for different sorting algorithms and other functions-->
-        <button type="button" class="sorts" id="shuffle">Shuffle!</button>
-        <button type="button" class="sorts" id="bogo">Let's Bogo!</button>
-        <button type="button" class="sorts" id="bubble">Bubble Sort (Slow)</button>
+        <button type="button" class="buttons" id="shuffle">Shuffle!</button>
+
         <!-- Create a toggle that cycles between two modes of bubble sort-->
-        <button type="button" class="sorts" id="bubble-toggle">Bubble Sort (Toggle)</button>
-        <button type="button" class="sorts" id="checkSort">Check Sorted Status</button>
-        <button type="button" class="sorts" id="stop-button">Stop current sort</button>
+        <button type="button" class="buttons" id="bubble-toggle">Bubble Sort (Toggle)</button>
+        <button type="button" class="buttons" id="stop-button">Stop current sort</button>
         <!-- Color pickers for start and end color -->
         <label for="color-picker-start"></label><input type="color" id="color-picker-start" value="#00ff00">
         <label for="color-picker-stop"></label><input type="color" id="color-picker-stop" value="#0000ff">
+        <button type="button" class="buttons" id="menu">Show menu</button>
+
     </div>
 
 
 </div>
 
-<!-- Sorting area display -->
+
 <div id="sorting_area"></div>
+<label for="main-slider"></label><input type="range" min="2" max="256" value="100" id="main-slider">
+<output id="output"></output>
+
+
 </body>
 </html>
