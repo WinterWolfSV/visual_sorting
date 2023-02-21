@@ -94,6 +94,12 @@ algorithm sorts an array of values step by step.
   ### TODO
 
     - [ ] Implement more algorithms
-    - [ ] Make the side menu work with the show menu button as well as add support for phones
+    - [X] Make the side menu work with the show menu button as well as add support for phones
 
 ---
+
+### 21st of Feb 2023:
+
+### Done today
+
+- Fixed the menu button

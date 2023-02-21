@@ -1,7 +1,4 @@
-window.onload = main;
-
-// Main function that sets up the initial state of the program
-function main(node, child) {
+window.onload = function () {
     // Get references to html elements
     let shuffle = document.getElementById("shuffle");
     let mainSlider = document.getElementById("main-slider");
@@ -18,8 +15,7 @@ function main(node, child) {
     let menu = document.getElementById("menu");
     let selectionMenu = document.getElementById("selection-menu");
     const htmlColumns = document.getElementsByClassName("column");
-
-
+    
     // Store the start and end colors in RGB
     let startHex = hexToRgb(colorPickerStart.value);
     let endHex = hexToRgb(colorPickerEnd.value);
@@ -53,15 +49,19 @@ function main(node, child) {
         }, 300);
 
     })
+
+    // Hides the selection menu when clicked outside off the menu
     document.addEventListener('click', (event) => {
-        if (!selectionMenu.contains(event.target)) {
+        if (!selectionMenu.contains(event.target) && !menu.contains(event.target)) {
+            console.log("clicked outside")
             selectionMenu.classList.remove('visible');
         }
     });
 
-
-    // Adds event handlers for html elements
+    //Adds event handlers for html elements
     menu.onclick = function () {
+        console.log("clicked menu")
+
         if (selectionMenu.classList.contains("visible")) {
             selectionMenu.classList.remove("visible");
         } else {
