@@ -6,8 +6,8 @@ body {
 
 /* Style for the sorting area container */
 #sorting_area {
-    width: 95vw;
-    height: 85vh;
+    width: 80vw;
+    height: 80vh;
     margin: auto;
     display: flex;
     align-items: baseline;
@@ -25,16 +25,23 @@ body {
 }
 
 /* Style for the main slider */
+#main-slider-container {
+    width: 85%;
+    margin: 40px auto 0 auto;
+    display: block;
+}
+
 #main-slider {
-    width: 70%;
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
 }
 
 /* Style for the output and iteration counter text */
 #output, #iteration-counter {
     color: greenyellow;
     font-size: 40px;
-    display: inline-block;
-    margin: 0 20px;
+    margin: 0 0 0 20px;
 }
 
 /* Style for the sort buttons */
@@ -45,7 +52,6 @@ body {
     height: 40px;
     margin: 0 20px;
     text-align: center;
-    display: inline-block;
 }
 
 .algorithm {

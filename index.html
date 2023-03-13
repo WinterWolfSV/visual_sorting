@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Sorting Algorithms</title>
     <link rel="stylesheet" href="assets/style.css">
-    <script type="module" src="assets/script.js"></script>
+    <script type="module" src="assets/scripts/script.js"></script>
 </head>
 <body>
 
@@ -14,7 +14,10 @@
             <button type="button" class="algorithm" id="bogo">Bogo Sort</button>
         </li>
         <li>
-            <button type="button" class="algorithm" id="bubble">Bubble Sort (Slow)</button>
+            <button type="button" class="algorithm" id="bubble">Bubble Sort</button>
+        </li>
+        <li>
+            <button type="button" class="algorithm" id="quick-sort">Quick Sort</button>
         </li>
     </ul>
 </div>
@@ -31,7 +34,6 @@
         <button type="button" class="buttons" id="shuffle">Shuffle!</button>
 
         <!-- Create a toggle that cycles between two modes of bubble sort-->
-        <button type="button" class="buttons" id="bubble-toggle">Bubble Sort (Toggle)</button>
         <button type="button" class="buttons" id="stop-button">Stop current sort</button>
         <!-- Color pickers for start and end color -->
         <label for="color-picker-start"></label><input type="color" id="color-picker-start" value="#00ff00">
@@ -45,8 +47,10 @@
 
 
 <div id="sorting_area"></div>
-<label for="main-slider"></label><input type="range" min="2" max="256" value="100" id="main-slider">
-<output id="output"></output>
+<div id="main-slider-container">
+    <label for="main-slider"></label><input type="range" min="2" max="256" value="100" id="main-slider">
+    <output id="output"></output>
+</div>
 
 
 </body>

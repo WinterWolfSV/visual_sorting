@@ -103,3 +103,17 @@ algorithm sorts an array of values step by step.
 ### Done today
 
 - Fixed the menu button
+
+### 13th of March 2023:
+
+### Done today
+
+- Implemented a quick sort algorithm
+- Bodged the quick sort algorithm in hopes of nobody noticing
+
+  ### TODO
+
+    - [ ] Implement more algorithms
+    - [ ] Fix the quick sort algorithm without a bodge
+
+---
